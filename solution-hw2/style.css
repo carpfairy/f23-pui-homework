@@ -21,7 +21,7 @@ a{
 
 .heading-container{
     display:flex;
-    margin-bottom:30px;
+    margin-bottom:50px;
 }
 
 .sitelogo{
@@ -75,7 +75,9 @@ a{
 
 .column{
     margin-bottom:20px;
-    padding: 10px 10px 20px 10px;
+    padding:10px 10px 20px 10px;
+    max-width:295px;
+    border:solid red 2px;
 }
 
 .column:hover{
@@ -83,13 +85,9 @@ a{
     font-weight:bold;
 }
 
-.product{
-    display:flex;
-}
-
-.product img {
+.column img{
     height:285px;
-    display:inline-block;
+    margin-bottom:2px;
     border:solid black 3px;
 }
 
@@ -97,11 +95,11 @@ a{
     text-decoration:underline;
     margin-top:10px;
     margin-bottom:5px;
-    font-size:19px; 
+    font-size:24px; 
 }
 
 .gallery-product-price{
-    font-size:19px;
+    font-size:24px;
 
 }
 
