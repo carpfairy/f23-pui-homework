@@ -47,7 +47,7 @@ a{
     flex-shrink:1;
     
     margin-left:2px;
-    font-size:30px;
+    font-size:35px;
 }
 
 .page-nav-item{
@@ -86,14 +86,14 @@ a{
     border:solid black 2px;
 }
 
-.product-desc{
+.gallery-product-desc{
     text-decoration:underline;
     margin-top:10px;
     margin-bottom:5px;
     font-size:20px; 
 }
 
-.product-price{
+.gallery-product-price{
     font-size:20px;
 
 }
@@ -118,8 +118,8 @@ a{
     flex:1;
     min-width:131px;
     margin:10px 20px 10px 0px;
-    /* border:solid red 2px;
-    background-color:pink; */
+    border:solid red 2px;
+    background-color:pink;
 }
 
 .cart-column-left img {
@@ -132,14 +132,14 @@ a{
     flex:1;
     margin:20px 50px;
     font-size:30px;
-    /* border:solid red 2px; */
+    border:solid red 2px;
 }
 
 .cart-column-center{
     flex:8;
     margin-left:10px;
     font-size:24px;
-    /* border:solid green 2px; */
+    border:solid green 2px;
 }
 
 .cart-remove{
@@ -151,7 +151,7 @@ a{
 }
 
 .cart-column-button{
-    margin:30px 50px;
+    /* margin:30px 50px; */
     padding:12px 36px;
 
     font-size:20px;
@@ -159,4 +159,55 @@ a{
 
     border:solid black 3px;
     background-color:yellow;
+}
+
+.product-container{
+    display:flex;
+    flex-wrap:wrap;
+    margin:25px;
+
+    font-size:24px;
+
+    /* border:solid blue 2px;
+    background-color:aqua; */
+}
+
+.product-container img{
+    display:inline-block;
+    height:600px;
+    border:solid black 3px;
+    margin:0px 50px 0px 50px;
+}
+
+.product-desc-container{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+
+    margin:0px 50px 0px 0px;
+    /* border:solid green 2px; */
+}
+
+.product-desc{
+    font-size:28px;
+    margin:50px 0px 50px 0px;
+    /* border:solid red 2px; */
+}
+
+.product-dropdown{
+    margin: 50px 0px 0px 0px;
+    font-size:24px;
+    /* border:solid pink 2px; */
+}
+
+.product-checkout{
+    display:flex;
+    flex-grow:1;
+    flex-shrink:1;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    margin:100px 0px 0px 0px;
+
+    /* border:solid orange 2px; */
 }
