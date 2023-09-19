@@ -118,8 +118,8 @@ a{
     flex:1;
     min-width:131px;
     margin:10px 20px 10px 0px;
-    border:solid red 2px;
-    background-color:pink;
+    /* border:solid red 2px;
+    background-color:pink; */
 }
 
 .cart-column-left img {
@@ -132,14 +132,14 @@ a{
     flex:1;
     margin:20px 50px;
     font-size:30px;
-    border:solid red 2px;
+    /* border:solid red 2px; */
 }
 
 .cart-column-center{
     flex:8;
     margin-left:10px;
     font-size:24px;
-    border:solid green 2px;
+    /* border:solid green 2px; */
 }
 
 .cart-remove{
