@@ -19,6 +19,11 @@ a{
     /*background-color:pink;*/
 }
 
+.heading-container{
+    display:flex;
+    margin-bottom:30px;
+}
+
 .sitelogo{
     margin:10px;
     width:400px;
@@ -31,7 +36,7 @@ a{
     flex-grow:1;
 }
 
-.child-page-nav{
+.page-nav{
     display:flex;
     justify-content:right;
     align-items:center;
@@ -39,7 +44,7 @@ a{
     flex-shrink:1;
 }
 
-.child-page-head{
+.page-head{
     display:flex;
     justify-content:left;
     align-items:center;
