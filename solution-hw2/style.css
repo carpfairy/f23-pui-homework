@@ -77,7 +77,7 @@ a{
     margin-bottom:20px;
     padding:10px 10px 20px 10px;
     max-width:295px;
-    border:solid red 2px;
+    /* border:solid red 2px; */
 }
 
 .column:hover{
@@ -215,4 +215,8 @@ a{
     margin:100px 0px 0px 0px;
 
     /* border:solid orange 2px; */
+}
+
+.product-price{
+    font-weight:bold;
 }
