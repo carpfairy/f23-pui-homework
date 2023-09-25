@@ -1,27 +1,46 @@
-document.querySelector('.product-desc').textContent = "working";
+// document.querySelector('.product-desc').textContent = "working";
 
-function getGlaze(element){
-    const glaze = element.value;
-    return glaze;
+// function glazingChange(element){
+//     const priceChange = element.value;
+// }
+
+const glaze = [
+    {name:"Keep original", price: 0},
+    {name: "Sugar milk", price:0},
+    {name: "Vanilla milk", price:.5},
+    {name: "Double chocolate", price: 1.5}
+]
+
+const packSize = [
+    {size: 1, priceMult: 1},
+    {size: 3, priceMult: 3},
+    {size: 6, priceMult:5},
+    {size: 12, priceMult:10}
+]
+
+glazingDropDown(){
+    let options = "option value='0"  
+}
+glazingChange(element){
+    const priceChange = element.value
 }
 
-function getPackSize(element){
-    const packSize = element.value;
-    return packSize;
 }
+console.log(packSize[3].priceMult);
 
-function getTotalPrice(){
-    glazePrice = getGlaze();
-    packSize = getPackSize();
-    let basePrice = 2.49;
-    const totalPrice = (basePrice+glazePrice)* packSize;
+//     inputGlazeOptions(){
+//         let options ="<option value='0'>select</option>"
 
-    document.querySelector('.product-price').textContent = totalPrice;
+        
+//     }
+    
+// }
 
-}
-
-//     let basePrice = 2.49;
-//     for 
+// {
+//     let glazeOptions="<option value='0'>select</option>"
+//     for (var i = 0; i < )
+// }
+// function getTotalPrice(){
 //     let glazingPrice = parseFloat(document.querySelector('#glazing').value);
 //     let packPrice = parseInt(document.querySelector('#packsize').value);
 //     finalPrice = ((glazingPrice + basePrice) * packPrice);
