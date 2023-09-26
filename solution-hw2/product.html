@@ -23,15 +23,12 @@
           <img src="logo-01.svg">
         </div>
       </a>
-
+      
       <div class="child-column">
         <div class="page-nav">
-          <a href="index.html"> 
-            <div class="page-nav-item">
-              <mark>PRODUCTS</mark>
-            </div>
-          </a>
-          
+          <div class="page-nav-item">
+            <mark>PRODUCTS</mark>
+          </div>
           <div class="page-nav-item">
             <a href="cart.html">
               CART
@@ -45,8 +42,7 @@
 
         <div class="page-head">
           Original cinnamon roll
-        </div>
-
+        </div>     
       </div>
     </div>
 
@@ -61,26 +57,26 @@
             Customize our delicious, hand-made cinnamon roll to your liking!
           </div>
 
-          <div class="product-dropdown">
+          <div class="product-dropdown-text">
             Glazing:
           </div>
           
-          <select name="glazing" id="glazing" onchange="getGlaze(this)">
-            <option value="0"> Keep original </option>
+          <select id="glazing" onchange="getTotalPrice()">
+            <!-- <option value="0"> Keep original </option>
             <option value="0"> Sugar milk </option>
             <option value=".5"> Vanilla milk </option>
-            <option value="1.5"> Double chocolate </option>
+            <option value="1.5"> Double chocolate </option> -->
           </select>
           
-          <div class="product-dropdown">
+          <div class="product-dropdown-text">
             Pack Size:
           </div>
           
-          <select name="packsize" id="packsize" onchange="getPackSize(this)">
-            <option value="1"> 1 </option>
+          <select id="packsize" onchange="getTotalPrice()">
+            <!-- <option value="1"> 1 </option>
             <option value="3"> 3 </option>
             <option value="5"> 6 </option>
-            <option value="10"> 12 </option>
+            <option value="10"> 12 </option> -->
           </select>
           
         <div class="container">

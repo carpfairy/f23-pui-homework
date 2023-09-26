@@ -199,8 +199,8 @@ a{
     /* border:solid red 2px; */
 }
 
-.product-dropdown{
-    margin: 50px 0px 0px 0px;
+.product-dropdown-text{
+    margin: 50px 0px 10px 0px;
     font-size:24px;
     /* border:solid pink 2px; */
 }
@@ -219,4 +219,9 @@ a{
 
 .product-price{
     font-weight:bold;
+}
+
+select {
+    height:50px;
+    font-size:16px;
 }
