@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <title>PUI HW 2</title>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,100;1,200&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="https://carpfairy.github.io/f23-pui-homework/solution-hw2/product.html">
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+
+    <div class="heading-container">
+      
+      <a href="index.html">
+        <div class="sitelogo">
+          <img src="logo-01.svg">
+        </div>
+      </a>
+      
+      <div class="child-column">
+        <div class="page-nav">
+          <a href="index.html">
+          <div class="page-nav-item">
+            <mark>PRODUCTS</mark>
+          </div>
+          </a>
+          <div class="page-nav-item">
+            <a href="cart.html">
+              CART
+            </a>
+          </div>
+        </div>
+
+        <div class="page-nav">
+          <hr>
+        </div>
+
+        <div class="page-head">
+          Original cinnamon roll
+        </div>     
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="product-container">
+        <div class="product-img" >
+          
+        </div>
+        <div class="product-desc-container">
+
+          <div class="product-desc">
+            Customize our delicious, hand-made cinnamon roll to your liking!
+          </div>
+
+          <div class="product-dropdown-text">
+            Glazing:
+          </div>
+          
+          <select id="glazing" onchange="getTotalPrice()">
+            <!-- options -->
+          </select>
+          
+          <div class="product-dropdown-text">
+            Pack Size:
+          </div>
+          
+          <select id="packSize" onchange="getTotalPrice()">
+            <!-- options -->
+          </select>
+          
+        <div class="container">
+          <div class="product-checkout">
+            <div class="product-price">
+              $2.49
+            </div>
+          </div>
+          
+          <div class="product-checkout">
+            <div class="product-button" onclick="addCartClick()">
+              Add to Cart
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+   
+  </html>
