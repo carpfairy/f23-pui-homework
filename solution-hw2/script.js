@@ -24,6 +24,7 @@ const bun = {
         "imageFile": "strawberry-cinnamon-roll.jpg"
     }    
 };
+
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const rollType = params.get('roll');
@@ -74,9 +75,9 @@ function updateProductImage(){
 function glazeDropDown(){
 
     const glazeData = [
-        {name:"Keep original", price: 0},
-        {name: "Sugar milk", price:0},
-        {name: "Vanilla milk", price:.5},
+        {name: "Keep original", price: 0},
+        {name: "Sugar milk", price: 0},
+        {name: "Vanilla milk", price: .5},
         {name: "Double chocolate", price: 1.5}
     ]
     
@@ -104,10 +105,10 @@ function glazeDropDown(){
 
 function packSizeDropDown(){
     const packData = [
-        {number:1, price:1},
-        {number:3, price:3},
-        {number:6, price:5},
-        {number:12, price:10}
+        {number: 1, price: 1},
+        {number: 3, price: 3},
+        {number: 6, price: 5},
+        {number: 12, price: 10}
     ]
 
     let packLength = packData.length;
@@ -176,8 +177,6 @@ function addCartClick(){
     cart.push(roll);
     console.log(cart);
 }
-
-
 
 fillTableWithBuns('.gallery-product-desc')
 updateQuery('.column')
