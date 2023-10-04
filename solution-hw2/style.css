@@ -92,7 +92,7 @@ a{
 }
 
 .gallery-product-desc{
-    text-decoration:underline;
+    /* text-decoration:underline; */
     margin-top:10px;
     margin-bottom:5px;
     font-size:24px; 
@@ -219,6 +219,17 @@ a{
 
 .product-price{
     font-weight:bold;
+}
+
+.product-button{
+    /* margin:30px 50px; */
+    padding:12px 36px;
+
+    font-size:20px;
+    font-weight:bold;
+
+    border:solid black 3px;
+    background-color:yellow;
 }
 
 select {

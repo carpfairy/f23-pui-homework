@@ -26,9 +26,11 @@
       
       <div class="child-column">
         <div class="page-nav">
+          <a href="index.html">
           <div class="page-nav-item">
             <mark>PRODUCTS</mark>
           </div>
+          </a>
           <div class="page-nav-item">
             <a href="cart.html">
               CART
@@ -48,8 +50,8 @@
 
     <div class="container">
       <div class="product-container">
-        <div class="product-img">
-          <img src="products\original-cinnamon-roll.jpg">
+        <div class="product-img" >
+          
         </div>
         <div class="product-desc-container">
 
@@ -62,21 +64,15 @@
           </div>
           
           <select id="glazing" onchange="getTotalPrice()">
-            <!-- <option value="0"> Keep original </option>
-            <option value="0"> Sugar milk </option>
-            <option value=".5"> Vanilla milk </option>
-            <option value="1.5"> Double chocolate </option> -->
+            <!-- options -->
           </select>
           
           <div class="product-dropdown-text">
             Pack Size:
           </div>
           
-          <select id="packsize" onchange="getTotalPrice()">
-            <!-- <option value="1"> 1 </option>
-            <option value="3"> 3 </option>
-            <option value="5"> 6 </option>
-            <option value="10"> 12 </option> -->
+          <select id="packSize" onchange="getTotalPrice()">
+            <!-- options -->
           </select>
           
         <div class="container">
@@ -87,7 +83,7 @@
           </div>
           
           <div class="product-checkout">
-            <div class="cart-column-button">
+            <div class="product-button" onclick="addCartClick()">
               Add to Cart
             </div>
           </div>
