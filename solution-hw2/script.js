@@ -24,6 +24,10 @@ const bun = {
         "imageFile": "strawberry-cinnamon-roll.jpg"
     }    
 };
+const queryString = window.location.search;
+const params = new URLSearchParams(queryString);
+const rollType = params.get('roll');
+const cart = [];
 
 function fillTableWithBuns(div){
     let thisDiv=document.querySelectorAll(div);
@@ -51,7 +55,7 @@ function fillTableWithBuns(div){
     }
 }
 
-function updateLinks(div){
+function updateQuery(div){
     let thisDiv = document.querySelectorAll(div);
     const bunKeys = Object.keys(bun);
 
@@ -62,14 +66,9 @@ function updateLinks(div){
 
 }
 
-const queryString = window.location.search;
-const params = new URLSearchParams(queryString);
-const rollType = params.get('roll');
-const cart = [];
-
-function updateProductPage(){
+function updateProductImage(){
     document.querySelector('.page-head').innerHTML = rollType + " Cinnamon Roll";
-    document.querySelector('.product-img').innerHTML = "<img src=products/" + rollType + "-cinnamon-roll.jpg>";
+    document.querySelector('.product-img').innerHTML = "<img src=products/" + rollType.toLowerCase() + "-cinnamon-roll.jpg>";
 }
 
 function glazeDropDown(){
@@ -181,8 +180,7 @@ function addCartClick(){
 
 
 fillTableWithBuns('.gallery-product-desc')
-updateLinks('.column')
-
+updateQuery('.column')
 glazeDropDown()
 packSizeDropDown()
-updateProductPage()
+updateProductImage()
