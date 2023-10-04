@@ -76,7 +76,7 @@ a{
 .column{
     margin-bottom:20px;
     padding:10px 10px 20px 10px;
-    max-width:290px;
+    max-width:295px;
     /* border:solid red 2px; */
 }
 
@@ -92,7 +92,7 @@ a{
 }
 
 .gallery-product-desc{
-    /* text-decoration:underline; */
+    text-decoration:underline;
     margin-top:10px;
     margin-bottom:5px;
     font-size:24px; 
@@ -199,8 +199,8 @@ a{
     /* border:solid red 2px; */
 }
 
-.product-dropdown-text{
-    margin: 50px 0px 10px 0px;
+.product-dropdown{
+    margin: 50px 0px 0px 0px;
     font-size:24px;
     /* border:solid pink 2px; */
 }
@@ -215,24 +215,4 @@ a{
     margin:100px 0px 0px 0px;
 
     /* border:solid orange 2px; */
-}
-
-.product-price{
-    font-weight:bold;
-}
-
-.product-button{
-    /* margin:30px 50px; */
-    padding:12px 36px;
-
-    font-size:20px;
-    font-weight:bold;
-
-    border:solid black 3px;
-    background-color:yellow;
-}
-
-select {
-    height:50px;
-    font-size:16px;
 }

@@ -11,11 +11,10 @@
       rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="https://carpfairy.github.io/f23-pui-homework/solution-hw2/product.html">
-    <script src="script.js" defer></script>
   </head>
 
   <body>
-
+    
     <div class="heading-container">
       
       <a href="index.html">
@@ -23,14 +22,15 @@
           <img src="logo-01.svg">
         </div>
       </a>
-      
+
       <div class="child-column">
         <div class="page-nav">
-          <a href="index.html">
-          <div class="page-nav-item">
-            <mark>PRODUCTS</mark>
-          </div>
+          <a href="index.html"> 
+            <div class="page-nav-item">
+              <mark>PRODUCTS</mark>
+            </div>
           </a>
+          
           <div class="page-nav-item">
             <a href="cart.html">
               CART
@@ -44,14 +44,15 @@
 
         <div class="page-head">
           Original cinnamon roll
-        </div>     
+        </div>
+
       </div>
     </div>
 
     <div class="container">
       <div class="product-container">
-        <div class="product-img" >
-          
+        <div class="product-img">
+          <img src="products\original-cinnamon-roll.jpg">
         </div>
         <div class="product-desc-container">
 
@@ -59,31 +60,35 @@
             Customize our delicious, hand-made cinnamon roll to your liking!
           </div>
 
-          <div class="product-dropdown-text">
+          <div class="product-dropdown">
             Glazing:
           </div>
           
-          <select id="glazing" onchange="getTotalPrice()">
-            <!-- options -->
+          <select name="glazing" id="glazing">
+            <option value="original"> Keep original </option>
+            <option value="sugar"> Sugar milk </option>
+            <option value="vanilla"> Vanilla milk </option>
+            <option value="dc"> Double chocolate </option>
           </select>
           
-          <div class="product-dropdown-text">
+          <div class="product-dropdown">
             Pack Size:
           </div>
           
-          <select id="packSize" onchange="getTotalPrice()">
-            <!-- options -->
+          <select name="packsize" id="packsize">
+            <option value="1"> 1 </option>
+            <option value="3"> 3 </option>
+            <option value="6"> 6 </option>
+            <option value="12"> 12 </option>
           </select>
           
         <div class="container">
           <div class="product-checkout">
-            <div class="product-price">
-              $2.49
-            </div>
+            $2.49
           </div>
           
           <div class="product-checkout">
-            <div class="product-button" onclick="addCartClick()">
+            <div class="cart-column-button">
               Add to Cart
             </div>
           </div>
