@@ -1,3 +1,4 @@
+
 const bun = {
     "Original": {
         "basePrice": 2.49,
@@ -75,22 +76,27 @@ function updateQuery(div){
 }
 
 function updateProductImage(){
-    document.querySelector('.page-head').innerHTML = rollType + " Cinnamon Roll";
-    document.querySelector('.product-img').innerHTML = "<img src=products/" + rollType.toLowerCase() + "-cinnamon-roll.jpg>";
+    if(window.location.href.indexOf("product") > -1){
+        document.querySelector('.page-head').innerHTML = rollType + " Cinnamon Roll";
+        document.querySelector('.product-img').innerHTML = "<img src=products/" + rollType.toLowerCase() + "-cinnamon-roll.jpg>";
+    }
 }
 
 //product.html ----------
 function glazeDropDown(){
-    let glazeLength = glazeData.length;
-    const glazeDropDown = document.querySelector('#glazing');
-    
-    for (let i=0; i <glazeLength; i++){
-        let name = glazeData[i].name;
-        let price = glazeData[i].price;
-        let option = document.createElement("option");
-        option.textContent = name;
-        option.value = price;
-        glazeDropDown.appendChild(option);
+
+    if(window.location.href.indexOf("product") > -1){
+        let glazeLength = glazeData.length;
+        const glazeDropDown = document.querySelector('#glazing');
+        
+        for (let i=0; i <glazeLength; i++){
+            let name = glazeData[i].name;
+            let price = glazeData[i].price;
+            let option = document.createElement("option");
+            option.textContent = name;
+            option.value = price;
+            glazeDropDown.appendChild(option);
+        }
     }
 }
 
@@ -102,16 +108,18 @@ const packData = [
 ]
 
 function packSizeDropDown(){
-    let packLength = packData.length;
-    const packDropDown = document.querySelector('#packSize');
+    if(window.location.href.indexOf("product") > -1){
+        let packLength = packData.length;
+        const packDropDown = document.querySelector('#packSize');
 
-    for (let i=0; i <packLength; i++){
-        let number = packData[i].number;
-        let price = packData[i].price;
-        let option = document.createElement("option");
-        option.textContent = number;
-        option.value = price;
-        packDropDown.add(option);
+        for (let i=0; i <packLength; i++){
+            let number = packData[i].number;
+            let price = packData[i].price;
+            let option = document.createElement("option");
+            option.textContent = number;
+            option.value = price;
+            packDropDown.add(option);
+        }
     }
 }
 
@@ -166,6 +174,7 @@ class Roll {
     }  
 }
 
+
 function addCartClickToProductPg(){
 
     let rollType = params.get('roll');
@@ -190,23 +199,25 @@ function addCartClickToProductPg(){
     console.log(cart);
 }
 
-//cart.html ----------
+
+// cart.html ----------
 let originalBun = new Roll("Original", "Sugar milk", 1, 2.49);
 let walnutBun = new Roll("Walnut", "Vanilla milk", 12, 3.49);
 let raisinBun = new Roll("Raisin", "Sugar milk", 3, 2.99);
 let appleBun = new Roll("Apple", "Keep original", 3, 3.49);
 
-function updateCart(Roll){
-    let cartColumnLeft = document.querySelector('.cart-column.left');
-    let cartRemove = template.querySelector('.cart-remove');
-    let cartColumnCenter = template.querySelector('.cart-column-center');
 
-    cartColumnLeft.innerHTML = Roll.rollType;
+function updateCart(){
+    let cartColumnLeft = document.querySelector('.cart-column-left');
+    let cartRemove = document.querySelector('.cart-remove');
+    let cartColumnCenter = document.querySelector('.cart-column-center');
+
+    document.querySelector('.cart-column-left').textContent = "wer";
     cartRemove.innerHTML = "Remove";
-    cartColumnCenter.innerHTML = Roll.packPrice;
+    cartColumnCenter.innerHTML = "wer";
 
-    let clone = template.content.cloneNode(true);
-    document.body.appendChild(clone);
+    // let clone = template.content.cloneNode(true);
+    // document.body.appendChild(clone);
 }
 
 fillTableWithBuns('.gallery-product-desc')
@@ -214,4 +225,5 @@ updateQuery('.column')
 glazeDropDown()
 packSizeDropDown()
 updateProductImage()
-updateCart(originalBun);
+updateCart()
+
