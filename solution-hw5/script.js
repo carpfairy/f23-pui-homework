@@ -153,24 +153,25 @@ class Roll {
     }
 
     packPrice(){
-        let packPrice = basePrice;
+        let packPrice = 0;
         let glazingPrice = 0;
+
         for (let i=0; i<packData.length; i++){
             let number = packData[i].number;
             let price = packData[i].price;
-            if(packSize == number){
-                packPrice == price;
+            if(this.size == number){
+                packPrice = price;
             }
         }
 
         for (let i=0; i<glazeData.length; i++){
             let name = glazeData[i].name;
             let price = glazeData[i].price;
-            if(rollGalzing == name){
+            if(this.rollGlazing == name){
                 glazingPrice == price;
             }
         }
-        return packPrice * (basePrice + glazingPrice);
+        return packPrice * (this.basePrice + glazingPrice);
     }  
 }
 
@@ -201,29 +202,91 @@ function addCartClickToProductPg(){
 
 
 // cart.html ----------
+const cartPageBunsPrice = []; //THIS IS THE CART FOR HW5!!!! NOT cart[] WHICH IS FOR HW4!!!!
+
 let originalBun = new Roll("Original", "Sugar milk", 1, 2.49);
 let walnutBun = new Roll("Walnut", "Vanilla milk", 12, 3.49);
 let raisinBun = new Roll("Raisin", "Sugar milk", 3, 2.99);
 let appleBun = new Roll("Apple", "Keep original", 3, 3.49);
+const cartPageBuns = [originalBun, walnutBun, raisinBun, appleBun];
 
+function createNewCartItem(roll){
+    const divNames = ['cart-column-left', 'cart-column-center', 'cart-column-right'];
+    let rollType = roll.type;
+    let rollGlazing = roll.glazing;
+    let rollPackSize = roll.size;
+    let rollPackPrice = roll.packPrice();
 
-function updateCart(){
-    let cartColumnLeft = document.querySelector('.cart-column-left');
-    let cartRemove = document.querySelector('.cart-remove');
-    let cartColumnCenter = document.querySelector('.cart-column-center');
+    let grid = document.querySelector(".cart-grid");
+    let rowDiv = document.createElement("div");
+    grid.appendChild(rowDiv);
+    rowDiv.classList.add('cart-row');
 
-    document.querySelector('.cart-column-left').textContent = "wer";
-    cartRemove.innerHTML = "Remove";
-    cartColumnCenter.innerHTML = "wer";
+    for(i in divNames){
+        let table = rowDiv;
+        let newDiv = document.createElement("div");
+        table.appendChild(newDiv);
+        newDiv.classList.add(divNames[i]);
+        const br = document.createElement("br");
 
-    // let clone = template.content.cloneNode(true);
-    // document.body.appendChild(clone);
+        if(i==0){
+            let newImage = document.createElement("img");
+            newImage.src="products/"+ rollType + "-cinnamon-roll.jpg";
+            let newRemoveText = document.createElement("div");
+            newDiv.appendChild(newImage);
+            newDiv.appendChild(newRemoveText);
+            newRemoveText.classList.add("cart-remove");
+            newRemoveText.innerHTML = "Remove";
+            let removeIndex = document.querySelectorAll('cart-remove').length
+            newRemoveText.addEventListener("click", function(){
+                document.querySelectorAll('.cart-row')[removeIndex].remove();
+                cartPageBuns.pop(removeIndex);
+                console.log(cartPageBuns);
+            });
+        }
+
+        if(i==1){
+            const newDescText = ["Roll Type: ", rollType, "Glazing: ", rollGlazing, "Pack Size: ", rollPackSize];
+            for(i in newDescText){
+                newDiv.innerHTML += newDescText[i];
+                if(i%2==1){
+                    newDiv.appendChild(br);}
+            }
+        }
+
+        if(i==2){
+            newDiv.innerHTML += "$" + rollPackPrice.toFixed(2);
+            cartPageBunsPrice.push(parseFloat(rollPackPrice.toFixed(2)));
+        }
+
+    }
 }
+
+function fillCart(list){
+    for(i in list){
+        createNewCartItem(list[i]);
+    }
+}
+
+function getCartTotal(){
+    let total = 0;
+    for(i in cartPageBunsPrice){
+        total+= cartPageBunsPrice[i];
+    }
+    document.getElementById('cart-total').innerHTML = "$" + total;
+}
+
+
+
+
+console.log(cartPageBunsPrice);
 
 fillTableWithBuns('.gallery-product-desc')
 updateQuery('.column')
 glazeDropDown()
 packSizeDropDown()
 updateProductImage()
-updateCart()
+
+fillCart(cartPageBuns);
+getCartTotal();
 
