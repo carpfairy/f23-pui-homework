@@ -231,7 +231,7 @@ function createNewCartItem(roll){
 
         if(i==0){
             let newImage = document.createElement("img");
-            newImage.src="products/"+ toLowerCase(rollType) + "-cinnamon-roll.jpg";
+            newImage.src="products/"+ rollType.toLowerCase() + "-cinnamon-roll.jpg";
             let newRemoveText = document.createElement("div");
             newDiv.appendChild(newImage);
             newDiv.appendChild(newRemoveText);
