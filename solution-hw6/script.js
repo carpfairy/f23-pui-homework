@@ -29,6 +29,7 @@ const bun = {
 const queryString = window.location.search;
 const params = new URLSearchParams(queryString);
 const rollType = params.get('roll');
+const cartPageBuns = [];
 // const cart = [];
 
 const glazeData = [
@@ -81,7 +82,7 @@ function updateProductImage(){
 
 }
 
-//product.html ----------
+//product.html ----------------------------------------------------------------
 function glazeDropDown(){
 
     if(window.location.href.indexOf("product") > -1){
@@ -98,7 +99,6 @@ function glazeDropDown(){
         }
     }
 }
-
 const packData = [
     {number: 1, price: 1},
     {number: 3, price: 3},
@@ -122,7 +122,7 @@ function packSizeDropDown(){
     }
 }
 
-function getTotalPrice(){
+function totalProductPrice(){
     let glazingPrice = parseFloat(document.querySelector('#glazing').value);
     let packPrice = parseFloat(document.querySelector('#packSize').value);
     let rollBasePrice = 2.49;
@@ -170,13 +170,70 @@ class Roll {
                 glazingPrice == price;
             }
         }
-        return packPrice * (this.basePrice + glazingPrice);
+
+        let outputPrice = packPrice * (this.basePrice + glazingPrice);
+        return parseFloat(outputPrice).toFixed(2);
     }  
 }
 
-function addCartClickToProductPg(array){
-    let cart = array;
-    console.log(cart);
+
+//Retrieve local storage
+function updateLocalStorage(){
+    let cart;
+    if(window.location.href.indexOf("product") > -1){
+        if(localStorage.getItem('cart') != null){
+            console.log("something in Product Page localstorage");
+            cart = JSON.parse(localStorage.getItem('cart'));
+            console.log(cart);
+        }
+
+        else{
+            console.log("nothing in Product Page localstorage");
+            cart = [];
+            console.log("cart created on product page");
+        }
+
+        document.querySelector('.product-button').addEventListener("click", function(){
+            cart.push(getBunDetails());
+            let cartString = JSON.stringify(cart);
+            localStorage.setItem('cart', cartString);
+            console.log(localStorage);
+        });
+    }
+    
+    if(window.location.href.indexOf('cart') > -1){
+        if(localStorage.getItem('cart') != null){
+            cart = JSON.parse(localStorage.getItem('cart'));
+            let allRemoves = document.querySelectorAll('.cart-remove');
+            for(let i=0; i<allRemoves.length; i++){
+                allRemoves[i].addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.target.closest('.cart-row').remove();
+                    console.log(i);
+                    delete cart[i];
+                    console.log(cart);
+                    let newCart = cart.filter(value => Object.keys(value).length !== 0);
+                    let newCartString = JSON.stringify(newCart);
+                    localStorage.clear();
+                    localStorage.setItem('cart', newCartString);
+                    console.log(localStorage.getItem('cart'));
+                    getTotalCartPrice()
+                })
+            }
+           
+        }
+
+        else{
+            console.log("nothing in Cart Page localstorage");
+            cart=[];
+            console.log("cart created on cart page");
+           
+        }
+    }
+}
+
+//Get details of bun on product page
+function getBunDetails(){
     let rollType = params.get('roll');
     let glazeSel= document.querySelector('#glazing');
     let rollGlazing = glazeSel.options[glazeSel.selectedIndex].innerHTML;
@@ -186,6 +243,7 @@ function addCartClickToProductPg(array){
 
     let bP = 2.49;
 
+    //Find base price by looping through roll object until name matches
     for(const [key, {basePrice}] of Object.entries(bun)){
         let stringKey = String(key);
         if(stringKey == rollType){
@@ -193,43 +251,36 @@ function addCartClickToProductPg(array){
             break;
         }
     }
-
     const roll = new Roll(rollType, rollGlazing, packSize, bP);
-    cart.push(roll);
-}
-
-function getLocalStorage(){
-    let cart = null;
-    if(localStorage.getItem('cart') == null){
-        console.log("nothing in localstorage");
-        cart = [];
-    }
-
-    else{
-        const cartString = localStorage.getItem('cart');
-        console.log("something in localstorage");
-        cart = JSON.parse(cartString);
-    }
-    document.querySelector('.product-button').addEventListener("click", function(){addCartClickToProductPg(cart)});
+    return roll;
 }
 
 
+// cart.html ----------------------------------------------------------------
+//get cart items from local storage and put them on the cart page
 
-// cart.html ----------
-const cartPageBunsPrice = []; //THIS IS THE CART FOR HW5!!!! NOT cart[] WHICH IS FOR HW4!!!!
+function turnStorageIntoBuns(){
+    let rollsObjects = [];
+    cartInStorage = JSON.parse(localStorage.getItem('cart'));
+    
+    for(item in cartInStorage){
+        let bun = new Roll(cartInStorage[item].type, cartInStorage[item].glazing,
+            cartInStorage[item].size, cartInStorage[item].basePrice);
+        rollsObjects.push(bun);
+    }
 
-let originalBun = new Roll("Original", "Sugar milk", 1, 2.49);
-let walnutBun = new Roll("Walnut", "Vanilla milk", 12, 3.49);
-let raisinBun = new Roll("Raisin", "Sugar milk", 3, 2.99);
-let appleBun = new Roll("Apple", "Keep original", 3, 3.49);
-const cartPageBuns = [originalBun, walnutBun, raisinBun, appleBun];
+    return rollsObjects;
+}
 
-function createNewCartItem(roll){
+
+//Create one row for one item in the cart
+function createNewCartItem(bun){
+    
     const divNames = ['cart-column-left', 'cart-column-center', 'cart-column-right'];
-    let rollType = roll.type;
-    let rollGlazing = roll.glazing;
-    let rollPackSize = roll.size;
-    let rollPackPrice = roll.packPrice();
+    let rollType = bun.type;
+    let rollGlazing = bun.glazing;
+    let rollPackSize = bun.size;
+    let rollPackPrice = bun.packPrice();
 
     let grid = document.querySelector(".cart-grid");
     let rowDiv = document.createElement("div");
@@ -249,14 +300,9 @@ function createNewCartItem(roll){
             let newRemoveText = document.createElement("div");
             newDiv.appendChild(newImage);
             newDiv.appendChild(newRemoveText);
+
             newRemoveText.classList.add("cart-remove");
             newRemoveText.innerHTML = "Remove";
-            let removeIndex = document.querySelectorAll('cart-remove').length
-            newRemoveText.addEventListener("click", function(){
-                document.querySelectorAll('.cart-row')[removeIndex].remove();
-                cartPageBuns.pop(removeIndex);
-                console.log(cartPageBuns);
-            });
         }
 
         if(i==1){
@@ -269,41 +315,43 @@ function createNewCartItem(roll){
         }
 
         if(i==2){
-            newDiv.innerHTML += "$" + rollPackPrice.toFixed(2);
-            cartPageBunsPrice.push(parseFloat(rollPackPrice.toFixed(2)));
+            newDiv.innerHTML += "$" + rollPackPrice;
         }
-
     }
 }
 
+//Create rows for items in cart array
 function fillCart(list){
-    for(i in list){
-        createNewCartItem(list[i]);
-    }
-}
-
-function getCartTotal(){
-    let total = 0;
-    for(i in cartPageBunsPrice){
-        total+= cartPageBunsPrice[i];
-    }
-    document.getElementById('cart-total').innerHTML = "$" + total;
+    list.forEach(item =>
+        createNewCartItem(item)
+    )
+    getTotalCartPrice()
 }
 
 
+function getTotalCartPrice(){
+    let totalPrice = 0;
+    let cartInStorage = turnStorageIntoBuns();
+    for(item in cartInStorage){
+        totalPrice += parseFloat(cartInStorage[item].packPrice());
+    }
+    document.getElementById('cart-total').innerHTML = "$" + totalPrice.toFixed(2);
+}
+
+if(window.location.href.indexOf("index") > -1){
 fillTableWithBuns('.gallery-product-desc')
 updateQuery('.column')
+}
 
 if(window.location.href.indexOf("product") > -1){
+    window.onload = function(){updateLocalStorage()};
     glazeDropDown()
     packSizeDropDown()
     updateProductImage()
-    getLocalStorage();
 }
 
 if(window.location.href.indexOf("cart") > -1){
-    fillCart(cartPageBuns);
-    getCartTotal();
+    window.onload = function(){updateLocalStorage()};
+    fillCart(turnStorageIntoBuns())
 }
-
 
